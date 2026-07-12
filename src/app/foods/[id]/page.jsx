@@ -1,5 +1,7 @@
 // import Image from "next/image";
 
+import Image from "next/image";
+
 const getSingleFoods = async (id) => {
   const res = await fetch(
     `https://taxi-kitchen-api.vercel.app/api/v1/foods/${id}`,
@@ -34,10 +36,10 @@ const Page = async ({ params }) => {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
-      <div className="grid gap-10 rounded-2xl bg-white p-6 shadow-lg md:grid-cols-2">
+      <div className="grid gap-10 rounded-2xl border-gray-400 border-1 shadow-gray-500 p-6 shadow-lg md:grid-cols-2">
         {/* Image */}
         <div className="relative h-[350px] overflow-hidden rounded-xl md:h-[500px]">
-          <img
+          <Image
             src={food.foodImg}
             alt={food.title}
             fill
