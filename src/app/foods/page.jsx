@@ -6,7 +6,8 @@ import InputSearch from '../../component/InputSearch';
 
 const getFoods = async ({ search }) => {
     const res = await fetch(
-        `https://taxi-kitchen-api.vercel.app/api/v1/foods/random?search=${search}`
+        `https://taxi-kitchen-api.vercel.app/api/v1/foods/random?search=${search}`,
+        { next: { revalidate: 10 } }
     );
     if (!res.ok) {
         throw new Error("Failed to fetch foods");
