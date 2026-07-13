@@ -13,7 +13,7 @@ const InputSearch = () => {
 
         const newParams = new URLSearchParams(params.toString());
         newParams.set("search", value);
-        router.push(`${newParams.toString()}`)
+        router.push(`foods?${newParams.toString()}`)
     }
 
     return (
