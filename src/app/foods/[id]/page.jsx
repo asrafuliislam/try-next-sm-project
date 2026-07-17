@@ -19,6 +19,10 @@ const getSingleFoods = async (id) => {
   return data.details;
 };
 
+export function generateStaticParams() {
+  return [{ id: "52898"}, {id: "52955"}, {id : "52326"}]
+}
+
 const Page = async ({ params }) => {
   const {id} = await params;
 
