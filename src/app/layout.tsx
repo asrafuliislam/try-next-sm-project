@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Creepster, Geist } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import CartProvider from "@/context/CartProvider";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+
+const creepster = Creepster({
+  weight: '400',
   subsets: ["latin"],
 });
+
 
 export const metadata: Metadata = {
   title: "Best Cook",
@@ -28,13 +31,16 @@ export default function RootLayout({
     <html
       lang="en"
     >
-      <body className="min-h-full flex flex-col">
-
-
+      <body className={`min-h-full flex flex-col ${geistSans.className}`}>
         <header className="px-5 py-2 flex items-center justify-between gap-5 bg-stone-800">
 
           <Link href="/">
-            <img src="/logo.png" alt="" className="w-[120px] py-4 brightness-1000 sepia hue-rotate-[330deg] saturate-[8] rounded-full" />
+            <Image
+              src="/logo.png"
+              alt=""
+              width={120}
+              height={50}
+              className="w-[120px] py-4 brightness-1000 sepia hue-rotate-[330deg] saturate-[8] rounded-full" />
           </Link>
 
           <div className="space-x-5">
@@ -45,7 +51,7 @@ export default function RootLayout({
         </header>
 
         <main className="px-5 py-5">
-          
+
           <CartProvider>{children}</CartProvider>
         </main>
       </body>
