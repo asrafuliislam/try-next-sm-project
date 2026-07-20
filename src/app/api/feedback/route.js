@@ -1,8 +1,14 @@
-import { feedback } from "../route";
+import { connect } from "../../lib/dbConnect";
 
-export async function GET() {
-    return Response.json(feedback);
+const feedbackCollection = connect("feedbacks");
+
+
+export async function GET(request) {
+    const result = await feedbackCollection.find().toArray();
+    return Response.json(result);
 }
+
+
 
 export async function POST(request) {
     const { message } = await request.json();
@@ -15,12 +21,10 @@ export async function POST(request) {
         });
     }
 
-    const newFeedback = { message, id: feedback.length + 1 };
-    feedback.push(newFeedback)
+    const newFeedback = { message, data: new Date().toISOString() };
+
+    const result = await feedbackCollection.insertOne(newFeedback);
 
 
-    return Response.json({
-        acknowledge: true,
-        insertedId: newFeedback.id,
-    });
+    return Response.json(result)
 }
