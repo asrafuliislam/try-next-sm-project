@@ -9,22 +9,15 @@ export async function GET(request) {
 }
 
 
-
 export async function POST(request) {
     const { message } = await request.json();
-
     if (!message || typeof message !== "string") {
         return Response.json({
             status: 400,
             message: "please send a Message "
-
         });
     }
-
     const newFeedback = { message, data: new Date().toISOString() };
-
     const result = await feedbackCollection.insertOne(newFeedback);
-
-
     return Response.json(result)
 }
