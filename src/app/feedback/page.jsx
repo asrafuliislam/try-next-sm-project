@@ -1,35 +1,41 @@
 import React from 'react';
 import FeedbackCard from '../../component/cards/FeedbackCard';
+import Link from "next/link";
 
 export const metadata = {
     title: "Feedback"
 }
 
-const GetFeedback = async() => {
-    const res = await fetch("localhost:3000/api/feedback/");
+const GetFeedback = async () => {
+    const res = await fetch("http://localhost:3000/api/feedback/", {
+        cache: "force-cache",
+        next: { revalidate: 60 }
+    });
+
     return await res.json();
 }
 
 const FeedBackPage = async () => {
-
     const feedbacks = await GetFeedback()
 
     return (
         <div className=''>
             <h2 className='font-bold text-2xl '>
-                Feedback
+                Feedback {feedbacks.length}
             </h2>
+
             <div>
                 <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                     {feedbacks.map((feedback) => (
                         <FeedbackCard
                             key={feedback._id}
                             feedback={feedback}
-                            onDelete={handleDelete}
-                            onUpdate={handleUpdate}
                         />
                     ))}
                 </div>
+            </div>
+            <div className='justify-between items-center my-5'>
+                <Link href={"/feedback/add"} className='btn'> Add Feedback</Link>
             </div>
         </div>
     );

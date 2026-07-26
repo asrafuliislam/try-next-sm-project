@@ -52,14 +52,11 @@ export async function PATCH(request, { params }) {
             message: "please send a Message "
         });
     }
-
-
     const newData = {
         $set: {
             message
         }
     }
-
     const result = await feedbackCollection.updateOne(query, newData)
     return Response.json(result)
 }
