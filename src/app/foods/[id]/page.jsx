@@ -1,6 +1,7 @@
 // import Image from "next/image";
 
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 const getSingleFoods = async (id) => {
   const res = await fetch(
@@ -41,14 +42,17 @@ const Page = async ({ params }) => {
 
   const food = await getSingleFoods(id);
 
-  if (!food) {
-    return (
-      <div className="py-20 text-center">
-        <h2 className="text-3xl font-bold text-red-500">
-          Food Not Found
-        </h2>
-      </div>
-    );
+  if (!food.title) {
+
+    redirect("/foods")
+
+    // return (
+    //   <div className="py-20 text-center">
+    //     <h2 className="text-3xl font-bold text-red-500">
+    //       Food Not Found
+    //     </h2>
+    //   </div>
+    // );
   }
 
   return (
