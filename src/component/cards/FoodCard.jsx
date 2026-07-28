@@ -15,7 +15,14 @@ const FoodCard = ({ food }) => {
           fill
           className="objext-cover"
         />
+
       </div>
+
+
+
+
+
+
 
       {/* Content */}
       <div className="space-y-4 p-4">

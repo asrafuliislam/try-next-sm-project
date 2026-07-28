@@ -1,10 +1,15 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from "next/server";
 
-// This function can be marked `async` if using `await` inside
 export function proxy(request) {
-    return NextResponse.redirect(new URL('/', request.url))
+    const {pathname} = request.nextUrl;
+    if (!pathname.startsWith("/api/feedback")) {
+        return NextResponse.json({
+            stats: 404
+        })
+    }
+    return NextResponse.next();
 }
 
 export const config = {
-    matcher: '/about/:path*',
-}
+    matcher: ["/api/:path*"],
+};

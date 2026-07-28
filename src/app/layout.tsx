@@ -37,10 +37,12 @@ export default function RootLayout({
           <Link href="/">
             <Image
               src="/logo.png"
-              alt=""
-              width={120}
-              height={50}
-              className="w-[120px] py-4 brightness-1000 sepia hue-rotate-[330deg] saturate-[8] rounded-full" />
+              alt="Logo"
+              width={200}
+              height={200}
+              className="w-20"
+            />
+
           </Link>
 
           <div className="space-x-5">

@@ -5,10 +5,11 @@ import Link from "next/link";
 export const metadata = {
     title: "Feedback"
 }
+export const dynamic = "force-dynamic";
 
 const GetFeedback = async () => {
-    const res = await fetch("http://localhost:3000/api/feedback/", {
-        cache: "force-cache",
+    const res = await fetch(`${process.env.NEXT_PUBLIC_server}/api/feedback/`, {
+
         next: { revalidate: 60 }
     });
 

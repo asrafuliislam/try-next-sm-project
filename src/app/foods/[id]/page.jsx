@@ -2,13 +2,11 @@
 
 import Image from "next/image";
 import { redirect } from "next/navigation";
+export const dynamic = "force-dynamic";
 
 const getSingleFoods = async (id) => {
   const res = await fetch(
     `https://taxi-kitchen-api.vercel.app/api/v1/foods/${id}`,
-    {
-      cache: "no-store",
-    }
   );
 
   if (!res.ok) {
